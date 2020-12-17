@@ -18,7 +18,7 @@ postsubmits:
     always_run: false
     run_if_changed: "builder-base/.*"
     max_concurrency: 10
-    cluster: "prow-postsubmits-cluster"
+    cluster: "ProwClusterFBBC2F06-2154244d756644fc99a2d32b834b343b"
     branches:
     - ^main$
     extra_refs:
@@ -31,7 +31,7 @@ postsubmits:
     skip_report: false
     decoration_config:
       gcs_configuration:
-        bucket: s3://prowdataclusterstack-316434458-prowbucket7c73355c-1n9f9v93wpjcm
+        bucket: s3://prow-data-devstack-prowbucket7c73355c-4wk9ssz43obi
         path_strategy: explicit
       s3_credentials_secret: s3-credentials
     labels:
