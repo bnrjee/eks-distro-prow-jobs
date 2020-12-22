@@ -22,6 +22,8 @@ presets:
     valueFrom:
       fieldRef:
         fieldPath: metadata.name
+  - name: GOPROXY
+    value: ""
   volumeMounts:
   - name: docker-registry-config
     readOnly: false
