@@ -15,8 +15,8 @@
 postsubmits:
   bnrjee/eks-distro:
   - name: kops-build-postsubmit
-    always_run: true
-    #run_if_changed: ".*"
+    always_run: false
+    run_if_changed: ".*"
     max_concurrency: 1
     cluster: "prow-postsubmits-cluster"
     branches:
