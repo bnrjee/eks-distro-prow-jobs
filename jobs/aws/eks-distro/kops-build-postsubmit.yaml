@@ -20,7 +20,7 @@ postsubmits:
     max_concurrency: 1
     cluster: "prow-postsubmits-cluster"
     branches:
-    - ^testit$
+    - ^main$
     skip_report: false
     decoration_config:
       gcs_configuration:
