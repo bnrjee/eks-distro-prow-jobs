@@ -54,8 +54,3 @@ presets:
     emptyDir: {}
   - name: status
     emptyDir: {}
-- env:
-  - name: AWS_ROLE_SESSION_NAME
-    valueFrom:
-      fieldRef:
-        fieldPath: metadata.name
