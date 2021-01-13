@@ -39,7 +39,7 @@ postsubmits:
         - bash
         - -c
         - >
-          make release DEVELOPMENT=false RELEASE_BRANCH=1-18 IMAGE_TAG='$(GIT_TAG)-$(PULL_BASE_SHA)'
+          make postsubmit-conformance DEVELOPMENT=false RELEASE_BRANCH=1-18 IMAGE_TAG='$(GIT_TAG)-$(PULL_BASE_SHA)'
           &&
           mv ./projects/kubernetes/kubernetes/_output/1-18/* /logs/artifacts
           &&
