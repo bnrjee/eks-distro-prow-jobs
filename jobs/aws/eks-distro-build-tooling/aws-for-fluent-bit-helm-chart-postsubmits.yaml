@@ -14,7 +14,7 @@
 
 postsubmits:
   aws/eks-distro-build-tooling:
-  - name: aws-for-fluent-bit-helm-chart-postsubmits
+  - name: aws-for-fluent-bit-helm-chart-postsubmit
     always_run: false
     run_if_changed: "projects/aws/eks-charts/aws-for-fluent-bit/.*"
     max_concurrency: 10
@@ -49,12 +49,6 @@ postsubmits:
             - -c
             - date +%s > /status/pending
           periodSeconds: 10
-      - name: buildkitd
-        image: moby/buildkit:master-rootless
-        command:
-        - sh
-        args:
-        - /script/entrypoint.sh
         livenessProbe:
           exec:
             command:
