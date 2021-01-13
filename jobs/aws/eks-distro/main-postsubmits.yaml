@@ -41,12 +41,6 @@ postsubmits:
         - >
           make postsubmit-conformance DEVELOPMENT=false RELEASE_BRANCH=1-18 IMAGE_TAG='$(GIT_TAG)-$(PULL_BASE_SHA)'
           &&
-          mv ./projects/kubernetes/kubernetes/_output/1-18/* /logs/artifacts
-          &&
-          mv ./projects/kubernetes-sigs/aws-iam-authenticator/_output/tar/* /logs/artifacts
-          &&
-          mv ./projects/containernetworking/plugins/_output/tar/* /logs/artifacts
-          &&
           touch /status/done
         livenessProbe:
           exec:
