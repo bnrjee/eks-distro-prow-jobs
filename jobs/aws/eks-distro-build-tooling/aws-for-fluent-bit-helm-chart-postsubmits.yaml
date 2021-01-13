@@ -49,6 +49,12 @@ postsubmits:
             - -c
             - date +%s > /status/pending
           periodSeconds: 10
+      - name: buildkitd
+        image: moby/buildkit:master-rootless
+        command:
+        - sh
+        args:
+        - /script/entrypoint.sh
         livenessProbe:
           exec:
             command:
