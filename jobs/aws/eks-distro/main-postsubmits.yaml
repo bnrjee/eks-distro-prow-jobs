@@ -16,7 +16,7 @@ postsubmits:
   bnrjee/eks-distro:
   - name: main-postsubmit
     always_run: false
-    run_if_changed: "^Makefile$"
+    run_if_changed: ".*"
     max_concurrency: 10
     cluster: "prow-postsubmits-cluster"
     branches:
