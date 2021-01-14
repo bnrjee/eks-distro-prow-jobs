@@ -30,7 +30,7 @@ postsubmits:
     labels:
       image-build: "true"
     spec:
-      serviceaccountName: postsubmits-build-account
+      serviceaccountName: docs-build-account
       automountServiceAccountToken: false
       containers:
       - name: build-container
