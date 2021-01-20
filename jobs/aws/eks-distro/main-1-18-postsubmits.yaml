@@ -13,10 +13,10 @@
 # limitations under the License.
 
 postsubmits:
-  aws/eks-distro:
-  - name: external-resizer-postsubmit
+  bnrjee/eks-distro:
+  - name: main-1-18-postsubmit
     always_run: false
-    run_if_changed: "EKS_DISTRO_BASE_TAG_FILE|projects/kubernetes-csi/external-resizer/.*"
+    run_if_changed: ".*"
     max_concurrency: 10
     cluster: "prow-postsubmits-cluster"
     branches:
@@ -24,7 +24,7 @@ postsubmits:
     skip_report: false
     decoration_config:
       gcs_configuration:
-        bucket: s3://prowdataclusterstack-316434458-prowbucket7c73355c-1n9f9v93wpjcm
+        bucket: s3://prow-data-devstack-prowbucket7c73355c-4wk9ssz43obi
         path_strategy: explicit
       s3_credentials_secret: s3-credentials
     labels:
@@ -35,11 +35,18 @@ postsubmits:
       containers:
       - name: build-container
         image: 316434458148.dkr.ecr.us-west-2.amazonaws.com/eks-distro/builder:fc2af3d852304949aae7c4dc681b3a30a9e56091
+        env:
+        - name: PROW_ROLE_ARN
+          value: arn:aws:iam::051478615782:role/prow-data-devstack-ProwClusterPostsubmitsUploadSer-FHVDY6XK7UKX
+        - name: TEST_ROLE_ARN
+          value: arn:aws:iam::051478615782:role/TestBuildRole
+        - name: KOPS_CLUSTER_NAME
+          value: "$(cat /dev/urandom | LC_ALL=C tr -dc "[:alpha:]" | tr '[:upper:]' '[:lower:]' | head -c 32).bnrjee.people.aws.dev" 
         command:
         - bash
         - -c
         - >
-          make release -C projects/kubernetes-csi/external-resizer DEVELOPMENT=false IMAGE_TAG='$(GIT_TAG)-$(PULL_BASE_SHA)'
+          make postsubmit-conformance DEVELOPMENT=false RELEASE_BRANCH=1-18 IMAGE_TAG='$(GIT_TAG)-$(PULL_BASE_SHA)'
           &&
           touch /status/done
         livenessProbe:
