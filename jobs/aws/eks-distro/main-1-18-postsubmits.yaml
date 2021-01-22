@@ -14,7 +14,7 @@
 
 postsubmits:
   bnrjee/eks-distro:
-  - bnrjee: main-1-18-postsubmit
+  - name: main-1-18-postsubmit
     always_run: false
     run_if_changed: ".*"
     max_concurrency: 10
@@ -38,6 +38,8 @@ postsubmits:
         env:
         - name: TEST_ROLE_ARN 
           value: "arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):role/TestBuildRole"
+        - name: KOPS_CLUSTER_NAME
+          value: "$(cat /dev/urandom | LC_ALL=C tr -dc '[:alpha:]' | tr '[:upper:]' '[:lower:]' | head -c 32).bnrjee.people.aws.dev" 
         command:
         - bash
         - -c
