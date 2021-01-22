@@ -14,7 +14,7 @@
 
 postsubmits:
   bnrjee/eks-distro:
-  - bnrjee: main-1-18-postsubmit
+  - name: main-1-18-postsubmit
     always_run: false
     run_if_changed: ".*"
     max_concurrency: 10
