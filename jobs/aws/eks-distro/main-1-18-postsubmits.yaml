@@ -35,11 +35,14 @@ postsubmits:
       containers:
       - name: build-container
         image: 316434458148.dkr.ecr.us-west-2.amazonaws.com/eks-distro/builder:fc2af3d852304949aae7c4dc681b3a30a9e56091
+        env:
+        - name: TEST_ROLE_NAME
+          value: "TestBuildRole"
         command:
         - bash
         - -c
         - >
-          make postsubmit-conformance DEVELOPMENT=false RELEASE_BRANCH=1-18 IMAGE_TAG='$(GIT_TAG)-$(PULL_BASE_SHA)' ARTIFACT_BUCKET=artifactsstack-3794122512-artifactsbucket2aac5544-1f3dgu9wrpiz2
+          make postsubmit-conformance DEVELOPMENT=false RELEASE_BRANCH=1-18 IMAGE_TAG='$(GIT_TAG)-$(PULL_BASE_SHA)'
           &&
           touch /status/done
         livenessProbe:
