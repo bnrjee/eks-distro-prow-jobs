@@ -37,8 +37,10 @@ postsubmits:
       - name: build-container
         image: 051478615782.dkr.ecr.us-west-2.amazonaws.com/eks-distro/builder:6b1e327f0ebf9abbdef93236b81ebbb28971ff47
         env:
-        - name: TEST_ROLE_NAME
-          value: "TestBuildRole"
+        - name: TEST_ROLE_ARN
+          value: "arn:aws:iam::051478615782:role/TestBuildRole"
+        - name: ARTIFACT_BUCKET
+          value: artifactsstack-3794122512-artifactsbucket2aac5544-1f3dgu9wrpiz2
         command:
         - bash
         - -c
